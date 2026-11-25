@@ -1,0 +1,41 @@
+{
+  "name": "safe-navigation-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "统一处理所有新窗口/弹窗入口，切断 window.opener 反向引用，并通过 COOP 隔离浏览上下文，同时保留 OAuth/支付弹窗通信",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "audit": "node scripts/audit-navigation.mjs",
+    "lint": "node scripts/audit-navigation.mjs",
+    "build": "npm run typecheck && npm run build:demo",
+    "build:demo": "esbuild demo/client.ts --bundle --format=iife --target=es2020 --outfile=demo/public/app.js && esbuild demo/bridge.ts --bundle --format=iife --target=es2020 --outfile=demo/public/bridge.js",
+    "demo": "npm run build:demo && tsx demo/server.ts",
+    "verify:e2e": "node e2e/verify.mjs --spawn",
+    "verify": "npm run typecheck && npm run audit && npm run test && npm run build:demo"
+  },
+  "dependencies": {
+    "node-html-parser": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.10",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "esbuild": "^0.28.2",
+    "express": "^5.3.0",
+    "happy-dom": "^21.0.4",
+    "playwright": "^1.65.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.3",
+    "vitest": "^5.1.2"
+  }
+}
