@@ -1,0 +1,21 @@
+{
+  "name": "tabnabbing-guard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "统一防御反向 tabnabbing 的前后端 TypeScript 库：切断 opener 引用、收紧 Referer、COOP 上下文隔离，同时保留受信任的第三方登录/支付弹窗通信",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json && node scripts/bundle-browser.mjs",
+    "test": "node --import tsx --test --test-reporter=spec \"test/**/*.test.ts\"",
+    "start:demo": "npm run build && node dist/examples/server.js"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^24.19.4",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^21.0.4",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9"
+  }
+}
